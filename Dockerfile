@@ -1,7 +1,7 @@
-FROM ubuntu:16.04
-MAINTAINER Fabian Stäber, fabian@fstab.de
+FROM docker.io/ubuntu:rolling
+MAINTAINER aairey <airey.andy+docker@gmail.com>
 
-ENV LAST_UPDATE=2017-07-18
+ENV LAST_UPDATE=2017-11-19
 
 RUN apt-get update && \
     apt-get upgrade -y
@@ -10,20 +10,24 @@ RUN apt-get update && \
 RUN apt-get install --yes tzdata locales
 
 # Set the timezone
-RUN echo "Europe/Berlin" | tee /etc/timezone && \
-    ln -fs /usr/share/zoneinfo/Europe/Berlin /etc/localtime && \
+RUN echo "Europe/Brussels" | tee /etc/timezone && \
+    ln -fs /usr/share/zoneinfo/Europe/Brussels /etc/localtime && \
     dpkg-reconfigure -f noninteractive tzdata
 
 # Set the locale for UTF-8 support
 RUN echo en_US.UTF-8 UTF-8 >> /etc/locale.gen && \
     locale-gen && \
     update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
-ENV LANG en_US.UTF-8
-ENV LANGUAGE en_US:en
-ENV LC_ALL en_US.UTF-8
+ENV LANG=en_US.UTF-8 \
+    LANGUAGE=en_US:en \
+    LC_ALL=en_US.UTF-8
 
 RUN apt-get -y install \
     python-potr \
+    python-requests \
+    python-feedparser \
+    python-websocket \
+    python-yowsup \
     weechat \
     weechat-scripts
 
