@@ -35,18 +35,7 @@ RUN adduser --disabled-login --gecos '' guest
 USER guest
 WORKDIR /home/guest
 
-RUN \
-    # enable otr \
-    \
-    echo /python load /usr/share/weechat/python/otr.py >> config.txt && \
-    echo /set weechat.bar.status.items "\"[time],[buffer_last_number],[buffer_plugin],[otr],buffer_number+:+buffer_name+(buffer_modes)+{buffer_nicklist_count}+buffer_zoom+buffer_filter,[lag],[hotlist],completion,scroll\"" >> config.txt && \
-    \
-    # Connect with SSL \
-    \
-    echo /server add freenode chat.freenode.net >> config.txt && \
-    echo /set irc.server.freenode.addresses \"chat.freenode.net/7000\" >> config.txt && \
-    echo /set irc.server.freenode.ssl on >> config.txt && \
-    echo
+ADD config.txt config.txt
 
 # Use config.txt only if no weechat configuration exists.
 # If there is already a configuration in /home/guest/.weechat, ignore config.txt
