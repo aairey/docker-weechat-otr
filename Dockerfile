@@ -30,8 +30,10 @@ RUN adduser --disabled-login --gecos '' guest && \
         python-feedparser \
         python-websocket \
         python-yowsup \
+        python-pip \
         weechat \
-        weechat-scripts
+        weechat-scripts && \
+    pip install yowsup2
 
 # Set the timezone
 RUN echo "Europe/Brussels" | tee /etc/timezone && \
