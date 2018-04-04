@@ -6,7 +6,7 @@ MAINTAINER aairey <airey.andy+docker@gmail.com>
 # Build-time metadata as defined at http://label-schema.org
 ARG BUILD_DATE
 ARG VCS_REF
-ARG VERSION=latest
+ARG VERSION=1.0.0
 ARG DEBIAN_FRONTEND=noninteractive
 
 LABEL org.label-schema.build-date=$BUILD_DATE \
@@ -25,6 +25,7 @@ RUN adduser --disabled-login --gecos '' guest && \
     apt-get install -y \
         tzdata \
         locales \
+        aspell-en aspell-fr aspell-de aspell-nl \
         python-potr \
         python-requests \
         python-feedparser \

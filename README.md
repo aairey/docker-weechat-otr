@@ -1,7 +1,8 @@
 docker-weechat-otr
 ==================
 
-[![](https://images.microbadger.com/badges/version/aairey/weechat-otr.svg)](https://microbadger.com/images/aairey/weechat-otr "Get your own version badge on microbadger.com")  [![](https://images.microbadger.com/badges/image/aairey/weechat-otr.svg)](https://microbadger.com/images/aairey/weechat-otr "Get your own image badge on microbadger.com") 
+
+[![Docker Automated build](https://img.shields.io/docker/automated/aairey/weechat-otr.svg)](https://hub.docker.com/r/aairey/weechat-otr)  [![](https://images.microbadger.com/badges/version/aairey/weechat-otr.svg)](https://microbadger.com/images/aairey/weechat-otr "Get your own version badge on microbadger.com")  [![](https://images.microbadger.com/badges/image/aairey/weechat-otr.svg)](https://microbadger.com/images/aairey/weechat-otr "Get your own image badge on microbadger.com") 
 
 Run the [WeeChat](https://weechat.org) IRC client with [Off-the-Record](http://en.wikipedia.org/wiki/Off-the-Record_Messaging) (OTR) encryption.
 
