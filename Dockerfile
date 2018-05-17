@@ -6,7 +6,7 @@ MAINTAINER aairey <airey.andy+docker@gmail.com>
 # Build-time metadata as defined at http://label-schema.org
 ARG BUILD_DATE
 ARG VCS_REF
-ARG VERSION=1.0.0
+ARG VERSION=1.9.1
 ARG DEBIAN_FRONTEND=noninteractive
 
 LABEL org.label-schema.build-date=$BUILD_DATE \
