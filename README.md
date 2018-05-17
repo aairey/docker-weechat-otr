@@ -29,6 +29,33 @@ Finally, connect to freenode:
 /connect freenode
 ```
 
+Run headlessly
+--------------
+
+Since `v2.1` it is possible to run weechat in headless mode, using the binary `weechat-headless`.
+
+Sample working docker-compose.yml file that I use personally:
+
+```yaml
+weechat:
+# script to run the old version manually in tmux (for interactive password prompt)
+# docker run -e "TERM=screen-256color" -v /path/to/weechat/config/:/home/guest/.weechat -p 9001:9001 -ti docker.io/aairey/weechat-otr:v1.9.1 -a
+  image: docker.io/aairey/weechat-otr:v2.1
+  environment:
+    TERM: screen-256color
+    LANGUAGE: en_US:en
+    LANG: en_US.UTF-8
+    LC_ALL: en_US.UTF-8
+    WEECHAT_PASSPHRASE: "${WEECHAT_PASSWORD}"
+  entrypoint: 'weechat-headless'
+  ports:
+    - 9001:9001
+  volumes:
+    - /path/to/weechat/config:/home/guest/.weechat
+```
+
+You can set your decrypt password in a file named `.env` next to your docker-compose.yml (make sure it is in your `.gitignore`!)
+
 Build from Source
 -----------------
 
