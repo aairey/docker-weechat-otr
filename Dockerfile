@@ -1,12 +1,12 @@
 # Dockerfile for aairey/weechat-otr
 
-FROM docker.io/ubuntu:rolling
+FROM docker.io/ubuntu:18.04
 MAINTAINER aairey <airey.andy+docker@gmail.com>
 
 # Build-time metadata as defined at http://label-schema.org
 ARG BUILD_DATE
 ARG VCS_REF
-ARG VERSION=1.9.1
+ARG VERSION=2.1
 ARG DEBIAN_FRONTEND=noninteractive
 
 LABEL org.label-schema.build-date=$BUILD_DATE \
@@ -21,7 +21,12 @@ LABEL org.label-schema.build-date=$BUILD_DATE \
 
 # Add locale and tzdata back, fix https://github.com/docker-library/official-images/issues/2863
 RUN adduser --disabled-login --gecos '' guest && \
-    apt-get update && apt-get upgrade -y && \
+    apt-get update && apt-get -y upgrade && \
+    apt-get install -y gnupg2 ca-certificates apt-transport-https && \
+    apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 11E9DE8848F2B65222AA75B8D1820DB22A11534E && \
+    echo "deb https://weechat.org/ubuntu bionic main" | tee /etc/apt/sources.list.d/weechat.list && \
+    echo "deb-src https://weechat.org/ubuntu bionic main" | tee -a /etc/apt/sources.list.d/weechat.list && \
+    apt-get update && \
     apt-get install -y \
         tzdata \
         locales \
@@ -32,8 +37,7 @@ RUN adduser --disabled-login --gecos '' guest && \
         python-websocket \
         python-yowsup \
         python-pip \
-        weechat \
-        weechat-scripts && \
+        weechat-curses weechat-plugins weechat-python weechat-perl && \
     pip install yowsup2
 
 # Set the timezone
