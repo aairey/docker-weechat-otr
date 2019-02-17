@@ -1,6 +1,3 @@
-# enable otr
-
-/python load /usr/share/weechat/python/otr.py
 /set weechat.bar.status.items "[time],[buffer_last_number],[buffer_plugin],[otr],buffer_number+:+buffer_name+(buffer_modes)+{buffer_nicklist_count}+buffer_zoom+buffer_filter,[lag],[hotlist],completion,scroll"
 
 # Connect with SSL

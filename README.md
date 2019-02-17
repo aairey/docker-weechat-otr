@@ -6,6 +6,20 @@ docker-weechat-otr
 
 Run the [WeeChat](https://weechat.org) IRC client with [Off-the-Record](http://en.wikipedia.org/wiki/Off-the-Record_Messaging) (OTR) encryption.
 
+
+Image details
+-------------
+
+This images contains:
+* the latest WeeChat from their repository
+* Spelling dictionaries (aspell) for English, French, German and Dutch
+* Support for scripts in Python, Lua and Perl
+* [OTR](https://weechat.org/scripts/source/otr.py.html/) script
+* [wee-slack](https://github.com/wee-slack/wee-slack) script
+* [matrix.org](https://matrix.org/docs/projects/client/weechat.html) script
+* Dependency for the [whatsapp](https://weechat.org/scripts/source/whatsapp.py.html/) script
+
+
 Run from Docker Hub
 -------------------
 

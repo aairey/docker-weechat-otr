@@ -6,7 +6,7 @@ MAINTAINER aairey <airey.andy+docker@gmail.com>
 # Build-time metadata as defined at http://label-schema.org
 ARG BUILD_DATE
 ARG VCS_REF
-ARG VERSION=2.1
+ARG VERSION=2.4
 ARG DEBIAN_FRONTEND=noninteractive
 
 LABEL org.label-schema.build-date=$BUILD_DATE \
@@ -31,14 +31,25 @@ RUN adduser --disabled-login --gecos '' guest && \
         tzdata \
         locales \
         aspell-en aspell-fr aspell-de aspell-nl \
+        wget \
+        lua-cjson \
         python-potr \
         python-requests \
         python-feedparser \
         python-websocket \
         python-yowsup \
         python-pip \
-        weechat-curses weechat-plugins weechat-python weechat-perl && \
-    pip install yowsup2
+        weechat-curses weechat-plugins weechat-python weechat-perl weechat-lua && \
+    pip install yowsup2 websocket-client && \
+    mkdir -p /home/guest/.weechat/python/autoload /home/guest/.weechat/lua/autoload && \
+    wget "https://raw.githubusercontent.com/mmb/weechat-otr/master/weechat_otr.py" -O /home/guest/.weechat/python/otr.py && \
+    wget "https://raw.githubusercontent.com/wee-slack/wee-slack/master/wee_slack.py" -O /home/guest/.weechat/python/wee_slack.py && \
+    wget "https://raw.githubusercontent.com/torhve/weechat-matrix-protocol-script/master/matrix.lua" -O /home/guest/.weechat/lua/matrix.lua && \
+    wget "https://raw.githubusercontent.com/torhve/weechat-matrix-protocol-script/master/olm.lua" -O /home/guest/.weechat/lua/olm.lua && \
+    ln -s /home/guest/.weechat/python/otr.py /home/guest/.weechat/python/autoload && \
+    ln -s /home/guest/.weechat/python/wee_slack.py /home/guest/.weechat/python/autoload && \
+    ln -s /home/guest/.weechat/lua/matrix.lua /home/guest/.weechat/lua/autoload && \
+    chown -R guest:guest /home/guest/.weechat
 
 # Set the timezone
 RUN echo "Europe/Brussels" | tee /etc/timezone && \
@@ -58,5 +69,5 @@ ADD config.txt config.txt
 # Use config.txt only if no weechat configuration exists.
 # If there is already a configuration in /home/guest/.weechat, ignore config.txt
 
-ENTRYPOINT bash -c 'if [ -f "/home/guest/.weechat/irc.conf" ] ; then weechat ; else weechat -r "`cat config.txt | tr \"\\n\" \"\;\"`" ; fi'
+CMD bash -c 'if [ -f "/home/guest/.weechat/irc.conf" ] ; then weechat ; else weechat -r "`cat config.txt | tr \"\\n\" \"\;\"`" ; fi'
 
