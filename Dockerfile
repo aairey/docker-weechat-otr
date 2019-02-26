@@ -39,7 +39,7 @@ RUN adduser --disabled-login --gecos '' guest && \
         python-websocket \
         python-yowsup \
         python-pip \
-        weechat-curses weechat-plugins weechat-python weechat-perl weechat-lua && \
+        weechat-curses weechat-headless weechat-plugins weechat-python weechat-perl weechat-lua && \
     pip install yowsup2 websocket-client && \
     mkdir -p /home/guest/.weechat/python/autoload /home/guest/.weechat/lua/autoload && \
     wget "https://raw.githubusercontent.com/mmb/weechat-otr/master/weechat_otr.py" -O /home/guest/.weechat/python/otr.py && \

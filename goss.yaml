@@ -1,0 +1,32 @@
+file:
+  /home/guest/.weechat/lua/matrix.lua:
+    exists: true
+    mode: "0644"
+    size: 119695
+    owner: guest
+    group: guest
+    filetype: file
+    contains: []
+  /home/guest/.weechat/python/otr.py:
+    exists: true
+    mode: "0644"
+    size: 76641
+    owner: guest
+    group: guest
+    filetype: file
+    contains: []
+  /home/guest/.weechat/python/wee_slack.py:
+    exists: true
+    mode: "0644"
+    size: 169756
+    owner: guest
+    group: guest
+    filetype: file
+    contains: []
+command:
+  weechat-headless -a --daemon:
+    exit-status: 0
+    stdout:
+    - Running WeeChat in background... OK
+    stderr: []
+    timeout: 10000
