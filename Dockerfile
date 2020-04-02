@@ -6,7 +6,7 @@ MAINTAINER aairey <airey.andy+docker@gmail.com>
 # Build-time metadata as defined at http://label-schema.org
 ARG BUILD_DATE
 ARG VCS_REF
-ARG VERSION=2.4
+ARG VERSION=2.8
 ARG DEBIAN_FRONTEND=noninteractive
 
 LABEL org.label-schema.build-date=$BUILD_DATE \
@@ -70,4 +70,3 @@ ADD config.txt config.txt
 # If there is already a configuration in /home/guest/.weechat, ignore config.txt
 
 CMD bash -c 'if [ -f "/home/guest/.weechat/irc.conf" ] ; then weechat ; else weechat -r "`cat config.txt | tr \"\\n\" \"\;\"`" ; fi'
-
