@@ -1,7 +1,6 @@
 # Dockerfile for aairey/weechat-otr
 
-FROM docker.io/ubuntu:18.04
-MAINTAINER aairey <airey.andy+docker@gmail.com>
+FROM docker.io/ubuntu:20.04
 
 # Build-time metadata as defined at http://label-schema.org
 ARG BUILD_DATE
